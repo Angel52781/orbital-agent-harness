@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "principals": [
+    {
+      "id": "owner",
+      "type": "human",
+      "label": "Owner",
+      "surfaces": ["private", "team"]
+    },
+    {
+      "id": "team",
+      "type": "human",
+      "label": "Orbital Team",
+      "surfaces": ["team"]
+    }
+  ],
+  "router": {
+    "id": "orbital-router",
+    "kind": "control-plane",
+    "responsibilities": [
+      "resolve-context",
+      "select-execution-mode",
+      "select-director",
+      "establish-permission-envelope",
+      "create-work-graph",
+      "dispatch",
+      "collect-evidence"
+    ]
+  },
+  "accessPolicy": {
+    "catalogVisibility": "discoverable-all",
+    "runtimeGrant": "grant-on-dispatch",
+    "permissionCeiling": "caller-intersection",
+    "secrets": "never-in-registry"
+  }
+}

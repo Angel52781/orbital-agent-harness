@@ -1,0 +1,30 @@
+{
+  "name": "orbital-agent-harness",
+  "version": "1.0.0",
+  "description": "Deterministic, friction-governed execution harness and permission contract engine for multi-agent coding systems over non-API subscription CLIs.",
+  "license": "MIT",
+  "type": "module",
+  "main": "src/sponsor-plan.mjs",
+  "bin": {
+    "orbital-harness": "src/cli-validate.mjs"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "validate-plan": "node src/cli-validate.mjs validate-plan"
+  },
+  "keywords": [
+    "ai-agents",
+    "agent-harness",
+    "multi-agent-orchestration",
+    "claude-code",
+    "codex",
+    "deterministic-execution",
+    "least-privilege",
+    "cryptographic-attestation"
+  ],
+  "author": "Angel Eduardo Reaño Vásquez <angelreanovasquez@gmail.com> (https://github.com/Angel52781)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Angel52781/orbital-agent-harness.git"
+  }
+}

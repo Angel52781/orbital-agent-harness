@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "projects": {
+    "example-fullstack-app": {
+      "generatedWriteScopes": [
+        "backend/node_modules",
+        "frontend/node_modules",
+        ".dart_tool",
+        "build",
+        "dist"
+      ],
+      "replaceableGeneratedWriteScopes": [
+        ".dart_tool",
+        "build"
+      ]
+    },
+    "example-mobile-client": {
+      "generatedWriteScopes": [
+        ".dart_tool",
+        "build"
+      ],
+      "replaceableGeneratedWriteScopes": [
+        ".dart_tool",
+        "build"
+      ],
+      "fingerprintExcludedScopes": [
+        ".dart_tool",
+        "build"
+      ]
+    },
+    "orbital-leads": {
+      "fingerprintExcludedScopes": [
+        ".firecrawl",
+        "acquisition/opportunity-inbox/external",
+        "acquisition/opportunity-inbox/quarantine"
+      ]
+    }
+  }
+}

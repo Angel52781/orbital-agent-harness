@@ -1,0 +1,1403 @@
+{
+  "schemaVersion": 1,
+  "profileSpecializations": [
+    {
+      "name": "graphic-designer",
+      "profileFile": "agents/specializations/graphic-designer.md",
+      "baseRoles": [
+        "art-director",
+        "visual-systems-designer"
+      ],
+      "validators": [
+        "reference-alignment",
+        "brand-coherence",
+        "delivery-format"
+      ]
+    },
+    {
+      "name": "experimental-motion-designer",
+      "profileFile": "agents/specializations/experimental-motion-designer.md",
+      "baseRoles": [
+        "visual-systems-designer",
+        "frontend-ux-engineer",
+        "video-editor"
+      ],
+      "validators": [
+        "reduced-motion",
+        "interaction-performance",
+        "visual-continuity",
+        "render-reproducibility"
+      ]
+    },
+    {
+      "name": "video-frame-critic",
+      "profileFile": "agents/specializations/video-frame-critic.md",
+      "baseRoles": [
+        "video-editor",
+        "release-auditor"
+      ],
+      "validators": [
+        "frame-level-qc",
+        "delivery-promise",
+        "identity-reference",
+        "exact-rendered-artifact"
+      ]
+    },
+    {
+      "name": "documents-presentations",
+      "profileFile": "agents/specializations/documents-presentations.md",
+      "baseRoles": [
+        "content-director",
+        "editorial-producer"
+      ],
+      "validators": [
+        "source-provenance",
+        "editorial-review",
+        "delivery-format",
+        "office-compatibility",
+        "artifact-metadata"
+      ]
+    },
+    {
+      "name": "educator-learning-coach",
+      "profileFile": "agents/specializations/educator-learning-coach.md",
+      "baseRoles": [
+        "product-ux-designer",
+        "content-director"
+      ],
+      "validators": [
+        "source-grounding",
+        "learning-adaptation",
+        "instructional-clarity"
+      ]
+    },
+    {
+      "name": "multi-agent-systems",
+      "profileFile": "agents/specializations/multi-agent-systems.md",
+      "baseRoles": [
+        "software-architect"
+      ],
+      "validators": [
+        "topology-fit",
+        "agent-contracts",
+        "context-isolation",
+        "recovery-paths",
+        "checkpoint-evidence",
+        "least-privilege"
+      ]
+    }
+  ],
+  "agents": [
+    {
+      "id": "orbital-director",
+      "displayName": "Director de Orquestación",
+      "division": "control-plane",
+      "level": "executive-director",
+      "status": "ACTIVE",
+      "purpose": "Convierte una intención ya resuelta en un work graph, selecciona directores de dominio y gobierna integración, presupuesto y evidencia.",
+      "parallelInstances": false,
+      "capabilityBundles": [
+        "context-core",
+        "architecture",
+        "director-support"
+      ],
+      "capabilityPolicy": {
+        "requiredBundles": [
+          "context-core"
+        ],
+        "usefulBundles": [
+          "architecture"
+        ],
+        "optionalBundles": [
+          "director-support"
+        ],
+        "forbiddenCapabilities": [
+          "devspace-write",
+          "apify-api",
+          "image-tools"
+        ],
+        "escalationPath": [
+          "director-assistant",
+          "software-architect",
+          "human-approval"
+        ]
+      },
+      "profileFile": "agents/orbital-director.md",
+      "runtimePolicy": {
+        "allowedModes": [
+          "read-only"
+        ],
+        "capabilityCeiling": "declared-bundles"
+      },
+      "executionPolicy": {
+        "contextBudgetTokens": 16000,
+        "outputBudgetTokens": 5000
+      },
+      "modelPolicy": {
+        "preferredClass": "strong",
+        "minimumClass": "strong",
+        "providerPreference": [
+          "codex",
+          "antigravity"
+        ],
+        "allowEconomyFallback": false
+      }
+    },
+    {
+      "id": "director-assistant",
+      "displayName": "Asistente del Director / Context Curator",
+      "division": "control-plane",
+      "level": "assistant",
+      "status": "ACTIVE",
+      "purpose": "Prepara contexto compacto, deltas, estado y evidencia para Directores; no decide arquitectura ni implementa.",
+      "parallelInstances": true,
+      "capabilityBundles": [
+        "context-core",
+        "architecture",
+        "director-support",
+        "context-acquisition",
+        "workspace-read"
+      ],
+      "capabilityPolicy": {
+        "requiredBundles": [
+          "context-core"
+        ],
+        "usefulBundles": [
+          "architecture"
+        ],
+        "optionalBundles": [
+          "director-support",
+          "context-acquisition",
+          "workspace-read"
+        ],
+        "forbiddenCapabilities": [
+          "devspace-write",
+          "image-tools"
+        ],
+        "escalationPath": [
+          "orbital-director"
+        ]
+      },
+      "profileFile": "agents/director-assistant.md",
+      "runtimePolicy": {
+        "allowedModes": [
+          "read-only"
+        ],
+        "capabilityCeiling": "declared-bundles"
+      },
+      "executionPolicy": {
+        "contextBudgetTokens": 12000,
+        "outputBudgetTokens": 2500
+      },
+      "modelPolicy": {
+        "preferredClass": "strong",
+        "minimumClass": "balanced",
+        "providerPreference": [
+          "antigravity",
+          "codex"
+        ],
+        "allowEconomyFallback": false
+      }
+    },
+    {
+      "id": "software-architect",
+      "displayName": "Arquitecto de Software",
+      "division": "software",
+      "level": "domain-director",
+      "status": "ACTIVE",
+      "purpose": "Diseña arquitectura, contratos, task graph, build order, riesgos y validación; delega implementación y no escribe código de aplicación por defecto.",
+      "parallelInstances": false,
+      "capabilityBundles": [
+        "context-core",
+        "architecture",
+        "workflow-design",
+        "research",
+        "security",
+        "director-support"
+      ],
+      "capabilityPolicy": {
+        "requiredBundles": [
+          "context-core",
+          "architecture"
+        ],
+        "usefulBundles": [
+          "workflow-design",
+          "research"
+        ],
+        "optionalBundles": [
+          "security",
+          "director-support"
+        ],
+        "forbiddenCapabilities": [
+          "devspace-write",
+          "apify-api",
+          "image-tools"
+        ],
+        "escalationPath": [
+          "research-evidence",
+          "security-reviewer",
+          "software-builder"
+        ]
+      },
+      "profileFile": "agents/software-architect.md",
+      "runtimePolicy": {
+        "allowedModes": [
+          "read-only"
+        ],
+        "capabilityCeiling": "declared-bundles"
+      },
+      "executionPolicy": {
+        "contextBudgetTokens": 16000,
+        "outputBudgetTokens": 5000
+      },
+      "modelPolicy": {
+        "preferredClass": "strong",
+        "minimumClass": "strong",
+        "providerPreference": [
+          "codex",
+          "antigravity"
+        ],
+        "allowEconomyFallback": false
+      }
+    },
+    {
+      "id": "research-evidence",
+      "displayName": "Research & Evidence",
+      "division": "shared-services",
+      "level": "specialist",
+      "status": "ACTIVE",
+      "purpose": "Recupera evidencia interna/externa, documentación oficial y precedentes con procedencia explícita.",
+      "parallelInstances": true,
+      "capabilityBundles": [
+        "context-core",
+        "research",
+        "workspace-read"
+      ],
+      "capabilityPolicy": {
+        "requiredBundles": [
+          "context-core",
+          "research"
+        ],
+        "usefulBundles": [],
+        "optionalBundles": [
+          "workspace-read"
+        ],
+        "forbiddenCapabilities": [
+          "devspace-write",
+          "image-tools",
+          "ads-auditors"
+        ],
+        "escalationPath": [
+          "software-architect",
+          "orbital-director"
+        ]
+      },
+      "profileFile": "agents/research-evidence.md",
+      "runtimePolicy": {
+        "allowedModes": [
+          "read-only"
+        ],
+        "capabilityCeiling": "declared-bundles"
+      },
+      "modelPolicy": {
+        "preferredClass": "strong",
+        "minimumClass": "balanced",
+        "providerPreference": [
+          "antigravity",
+          "codex"
+        ],
+        "allowEconomyFallback": false
+      }
+    },
+    {
+      "id": "software-builder",
+      "displayName": "Software Builder",
+      "division": "software",
+      "level": "builder",
+      "status": "ACTIVE",
+      "purpose": "Implementa paquetes de código acotados siguiendo contratos, instrucciones locales y validadores del proyecto.",
+      "parallelInstances": true,
+      "capabilityBundles": [
+        "context-core",
+        "code-build",
+        "architecture"
+      ],
+      "capabilityPolicy": {
+        "requiredBundles": [
+          "context-core",
+          "code-build"
+        ],
+        "usefulBundles": [
+          "architecture"
+        ],
+        "optionalBundles": [],
+        "forbiddenCapabilities": [
+          "apify-api",
+          "image-tools",
+          "ads-auditors"
+        ],
+        "escalationPath": [
+          "software-architect",
+          "software-integrator",
+          "human-approval"
+        ]
+      },
+      "profileFile": "agents/software-builder.md",
+      "runtimePolicy": {
+        "allowedModes": [
+          "read-only",
+          "workspace-write"
+        ],
+        "capabilityCeiling": "declared-bundles"
+      },
+      "modelPolicy": {
+        "preferredClass": "strong",
+        "minimumClass": "balanced",
+        "providerPreference": [
+          "antigravity",
+          "codex"
+        ],
+        "allowEconomyFallback": false
+      }
+    },
+    {
+      "id": "frontend-ux-engineer",
+      "displayName": "Frontend & UX Engineer",
+      "division": "software",
+      "level": "builder",
+      "status": "ACTIVE",
+      "purpose": "Implementa interfaces, interacción, responsive, accesibilidad y estados frontend siguiendo la dirección de producto y diseño aprobada, sin inventar estrategia de marca.",
+      "parallelInstances": true,
+      "capabilityBundles": [
+        "context-core",
+        "code-build",
+        "frontend",
+        "browser-qa",
+        "visual-reference",
+        "motion-analysis"
+      ],
+      "capabilityPolicy": {
+        "requiredBundles": [
+          "context-core",
+          "code-build",
+          "frontend"
+        ],
+        "usefulBundles": [
+          "browser-qa"
+        ],
+        "optionalBundles": [
+          "visual-reference",
+          "motion-analysis"
+        ],
+        "forbiddenCapabilities": [
+          "apify-api",
+          "ads-auditors"
+        ],
+        "escalationPath": [
+          "product-ux-designer",
+          "visual-systems-designer",
+          "software-integrator"
+        ]
+      },
+      "profileFile": "agents/frontend-ux-engineer.md",
+      "runtimePolicy": {
+        "allowedModes": [
+          "read-only",
+          "workspace-write"
+        ],
+        "capabilityCeiling": "declared-bundles",
+        "requireWriteScopes": true
+      },
+      "executionPolicy": {
+        "contextBudgetTokens": 16000,
+        "outputBudgetTokens": 5000
+      },
+      "modelPolicy": {
+        "preferredClass": "strong",
+        "minimumClass": "balanced",
+        "providerPreference": [
+          "antigravity",
+          "codex"
+        ],
+        "allowEconomyFallback": false
+      }
+    },
+    {
+      "id": "code-auditor",
+      "displayName": "Code Auditor",
+      "division": "software",
+      "level": "critic",
+      "status": "ACTIVE",
+      "purpose": "Audita correctness, mantenibilidad, complejidad, deuda, silencios de error y cobertura sin integrar el trabajo que revisa.",
+      "parallelInstances": true,
+      "capabilityBundles": [
+        "context-core",
+        "code-review",
+        "codebase-archaeology",
+        "security",
+        "diagnostics",
+        "verification-runtime"
+      ],
+      "capabilityPolicy": {
+        "requiredBundles": [
+          "context-core",
+          "code-review"
+        ],
+        "usefulBundles": [
+          "codebase-archaeology",
+          "security",
+          "verification-runtime"
+        ],
+        "optionalBundles": [
+          "diagnostics"
+        ],
+        "forbiddenCapabilities": [
+          "devspace-write",
+          "apify-api",
+          "image-tools"
+        ],
+        "escalationPath": [
+          "security-reviewer",
+          "software-architect"
+        ]
+      },
+      "profileFile": "agents/code-auditor.md",
+      "runtimePolicy": {
+        "allowedModes": [
+          "read-only"
+        ],
+        "capabilityCeiling": "declared-bundles"
+      },
+      "modelPolicy": {
+        "preferredClass": "strong",
+        "minimumClass": "strong",
+        "providerPreference": [
+          "antigravity"
+        ],
+        "allowEconomyFallback": false,
+        "preferIndependentProvider": true
+      }
+    },
+    {
+      "id": "qa-e2e",
+      "displayName": "QA / E2E ENGINEER",
+      "division": "software",
+      "level": "validator",
+      "status": "ACTIVE",
+      "purpose": "Prueba journeys reales y regresiones sobre la superficie final aplicable; usa browser/visual QA en UI y comandos, códigos, logs y artefactos en CLI/control-plane.",
+      "parallelInstances": true,
+      "capabilityBundles": [
+        "context-core",
+        "browser-qa",
+        "desktop-qa",
+        "code-review",
+        "verification-runtime"
+      ],
+      "capabilityPolicy": {
+        "requiredBundles": [
+          "context-core",
+          "browser-qa"
+        ],
+        "usefulBundles": [
+          "code-review",
+          "verification-runtime"
+        ],
+        "optionalBundles": [
+          "desktop-qa"
+        ],
+        "forbiddenCapabilities": [
+          "devspace-write",
+          "apify-api",
+          "image-tools"
+        ],
+        "escalationPath": [
+          "software-integrator",
+          "release-auditor"
+        ]
+      },
+      "profileFile": "agents/qa-e2e.md",
+      "runtimePolicy": {
+        "allowedModes": [
+          "read-only"
+        ],
+        "capabilityCeiling": "declared-bundles"
+      },
+      "modelPolicy": {
+        "preferredClass": "strong",
+        "minimumClass": "balanced",
+        "providerPreference": [
+          "antigravity"
+        ],
+        "allowEconomyFallback": false
+      }
+    },
+    {
+      "id": "security-reviewer",
+      "displayName": "Security Reviewer",
+      "division": "software",
+      "level": "critic",
+      "status": "ACTIVE",
+      "purpose": "Critica de forma independiente y sin remediar threat model, auth, autorización, inputs no confiables, secretos, exposición de datos y superficies de ataque.",
+      "parallelInstances": true,
+      "capabilityBundles": [
+        "context-core",
+        "security",
+        "code-review"
+      ],
+      "capabilityPolicy": {
+        "requiredBundles": [
+          "context-core",
+          "security"
+        ],
+        "usefulBundles": [
+          "code-review"
+        ],
+        "optionalBundles": [],
+        "forbiddenCapabilities": [
+          "devspace-write",
+          "image-tools",
+          "ads-auditors"
+        ],
+        "escalationPath": [
+          "software-architect",
+          "human-approval"
+        ]
+      },
+      "profileFile": "agents/security-reviewer.md",
+      "runtimePolicy": {
+        "allowedModes": [
+          "read-only"
+        ],
+        "capabilityCeiling": "declared-bundles"
+      },
+      "executionPolicy": {
+        "contextBudgetTokens": 16000,
+        "outputBudgetTokens": 5000
+      },
+      "modelPolicy": {
+        "preferredClass": "strong",
+        "minimumClass": "strong",
+        "providerPreference": [
+          "antigravity"
+        ],
+        "allowEconomyFallback": false,
+        "preferIndependentProvider": true
+      }
+    },
+    {
+      "id": "reliability-observability",
+      "displayName": "Reliability & Observability Engineer",
+      "division": "software",
+      "level": "specialist",
+      "status": "ACTIVE",
+      "purpose": "Diagnostica y especifica controles para logs, health, performance, fallbacks, recovery, rollback y evidencia operacional sin desplegar ni mutar producción.",
+      "parallelInstances": true,
+      "capabilityBundles": [
+        "context-core",
+        "reliability",
+        "code-review",
+        "diagnostics"
+      ],
+      "capabilityPolicy": {
+        "requiredBundles": [
+          "context-core",
+          "reliability"
+        ],
+        "usefulBundles": [
+          "code-review"
+        ],
+        "optionalBundles": [
+          "diagnostics"
+        ],
+        "forbiddenCapabilities": [
+          "devspace-write",
+          "apify-api",
+          "image-tools"
+        ],
+        "escalationPath": [
+          "software-architect",
+          "human-approval"
+        ]
+      },
+      "profileFile": "agents/reliability-observability.md",
+      "runtimePolicy": {
+        "allowedModes": [
+          "read-only"
+        ],
+        "capabilityCeiling": "declared-bundles"
+      },
+      "executionPolicy": {
+        "contextBudgetTokens": 12000,
+        "outputBudgetTokens": 4000
+      },
+      "modelPolicy": {
+        "preferredClass": "balanced",
+        "minimumClass": "balanced",
+        "providerPreference": [
+          "antigravity"
+        ],
+        "allowEconomyFallback": false
+      }
+    },
+    {
+      "id": "software-integrator",
+      "displayName": "Software Integrator",
+      "division": "software",
+      "level": "integrator",
+      "status": "ACTIVE",
+      "purpose": "Combina outputs de workers, resuelve incompatibilidades y ejecuta validaciones de integración sin sustituir al auditor final.",
+      "parallelInstances": false,
+      "capabilityBundles": [
+        "context-core",
+        "code-build",
+        "code-review"
+      ],
+      "capabilityPolicy": {
+        "requiredBundles": [
+          "context-core",
+          "code-build",
+          "code-review"
+        ],
+        "usefulBundles": [],
+        "optionalBundles": [],
+        "forbiddenCapabilities": [
+          "apify-api",
+          "image-tools",
+          "ads-auditors"
+        ],
+        "escalationPath": [
+          "software-architect",
+          "release-auditor",
+          "human-approval"
+        ]
+      },
+      "profileFile": "agents/software-integrator.md",
+      "runtimePolicy": {
+        "allowedModes": [
+          "read-only",
+          "workspace-write"
+        ],
+        "capabilityCeiling": "declared-bundles"
+      },
+      "executionPolicy": {
+        "contextBudgetTokens": 16000,
+        "outputBudgetTokens": 5000
+      },
+      "modelPolicy": {
+        "preferredClass": "strong",
+        "minimumClass": "balanced",
+        "providerPreference": [
+          "antigravity",
+          "codex"
+        ],
+        "allowEconomyFallback": false
+      }
+    },
+    {
+      "id": "release-auditor",
+      "displayName": "Release Auditor",
+      "division": "shared-services",
+      "level": "release-gate",
+      "status": "ACTIVE",
+      "purpose": "Gate final independiente que consume evidencia de builder, integrator, auditor, QA, seguridad y reliability y devuelve PASS, HOLD o FAIL sin reparar ni integrar.",
+      "parallelInstances": true,
+      "capabilityBundles": [
+        "context-core",
+        "code-review",
+        "security",
+        "reliability",
+        "browser-qa",
+        "verification-runtime"
+      ],
+      "capabilityPolicy": {
+        "requiredBundles": [
+          "context-core",
+          "code-review"
+        ],
+        "usefulBundles": [
+          "security",
+          "reliability",
+          "verification-runtime"
+        ],
+        "optionalBundles": [
+          "browser-qa"
+        ],
+        "forbiddenCapabilities": [
+          "devspace-write",
+          "apify-api",
+          "image-tools"
+        ],
+        "escalationPath": [
+          "orbital-director",
+          "human-approval"
+        ]
+      },
+      "profileFile": "agents/release-auditor.md",
+      "runtimePolicy": {
+        "allowedModes": [
+          "read-only"
+        ],
+        "capabilityCeiling": "declared-bundles"
+      },
+      "executionPolicy": {
+        "contextBudgetTokens": 16000,
+        "outputBudgetTokens": 5000
+      },
+      "modelPolicy": {
+        "preferredClass": "strong",
+        "minimumClass": "strong",
+        "providerPreference": [
+          "antigravity"
+        ],
+        "allowEconomyFallback": false,
+        "preferIndependentProvider": true
+      }
+    },
+    {
+      "id": "art-director",
+      "displayName": "Art Director",
+      "division": "design",
+      "level": "domain-director",
+      "status": "ACTIVE",
+      "purpose": "Convoca perspectivas visuales independientes, estructura desacuerdos, sintetiza dirección y fija una reference bar antes de producción.",
+      "parallelInstances": true,
+      "capabilityBundles": [
+        "context-core",
+        "frontend",
+        "visual-reference",
+        "research",
+        "director-support"
+      ],
+      "capabilityPolicy": {
+        "requiredBundles": [
+          "context-core",
+          "frontend",
+          "visual-reference"
+        ],
+        "usefulBundles": [],
+        "optionalBundles": [
+          "research",
+          "director-support"
+        ],
+        "forbiddenCapabilities": [
+          "devspace-write",
+          "apify-api",
+          "ads-auditors"
+        ],
+        "escalationPath": [
+          "product-ux-designer",
+          "visual-systems-designer",
+          "content-director"
+        ]
+      },
+      "profileFile": "agents/art-director.md",
+      "runtimePolicy": {
+        "allowedModes": [
+          "read-only"
+        ],
+        "capabilityCeiling": "declared-bundles"
+      },
+      "executionPolicy": {
+        "contextBudgetTokens": 16000,
+        "outputBudgetTokens": 5000
+      },
+      "modelPolicy": {
+        "preferredClass": "strong",
+        "minimumClass": "strong",
+        "providerPreference": [
+          "antigravity",
+          "codex"
+        ],
+        "allowEconomyFallback": false
+      }
+    },
+    {
+      "id": "product-ux-designer",
+      "displayName": "Product UX Designer",
+      "division": "design",
+      "level": "specialist",
+      "status": "ACTIVE",
+      "purpose": "Defiende claridad, journeys, accesibilidad, interacción, conversión y restricciones de producto.",
+      "parallelInstances": true,
+      "capabilityBundles": [
+        "context-core",
+        "frontend",
+        "browser-qa",
+        "learning"
+      ],
+      "capabilityPolicy": {
+        "requiredBundles": [
+          "context-core",
+          "frontend"
+        ],
+        "usefulBundles": [
+          "browser-qa"
+        ],
+        "optionalBundles": [
+          "learning"
+        ],
+        "forbiddenCapabilities": [
+          "devspace-write",
+          "apify-api",
+          "ads-auditors"
+        ],
+        "escalationPath": [
+          "art-director",
+          "frontend-ux-engineer"
+        ]
+      },
+      "profileFile": "agents/product-ux-designer.md",
+      "runtimePolicy": {
+        "allowedModes": [
+          "read-only"
+        ],
+        "capabilityCeiling": "declared-bundles"
+      },
+      "executionPolicy": {
+        "contextBudgetTokens": 12000,
+        "outputBudgetTokens": 4000
+      },
+      "modelPolicy": {
+        "preferredClass": "strong",
+        "minimumClass": "balanced",
+        "providerPreference": [
+          "antigravity",
+          "codex"
+        ],
+        "allowEconomyFallback": false
+      }
+    },
+    {
+      "id": "visual-systems-designer",
+      "displayName": "Visual Systems Designer",
+      "division": "design",
+      "level": "specialist",
+      "status": "ACTIVE",
+      "purpose": "Defiende identidad visual, tipografía, composición, tokens, sistema de componentes y coherencia de marca.",
+      "parallelInstances": true,
+      "capabilityBundles": [
+        "context-core",
+        "frontend",
+        "visual-reference"
+      ],
+      "capabilityPolicy": {
+        "requiredBundles": [
+          "context-core",
+          "frontend",
+          "visual-reference"
+        ],
+        "usefulBundles": [],
+        "optionalBundles": [],
+        "forbiddenCapabilities": [
+          "devspace-write",
+          "apify-api",
+          "ads-auditors"
+        ],
+        "escalationPath": [
+          "art-director",
+          "frontend-ux-engineer"
+        ]
+      },
+      "profileFile": "agents/visual-systems-designer.md",
+      "runtimePolicy": {
+        "allowedModes": [
+          "read-only"
+        ],
+        "capabilityCeiling": "declared-bundles"
+      },
+      "executionPolicy": {
+        "contextBudgetTokens": 12000,
+        "outputBudgetTokens": 8000
+      },
+      "modelPolicy": {
+        "preferredClass": "strong",
+        "minimumClass": "balanced",
+        "providerPreference": [
+          "antigravity",
+          "codex"
+        ],
+        "allowEconomyFallback": false
+      }
+    },
+    {
+      "id": "content-director",
+      "displayName": "Content Director",
+      "division": "content",
+      "level": "domain-director",
+      "status": "ACTIVE",
+      "purpose": "Dirige estrategia, formato, narrativa, evidencia, reference bar, workers y gates sin producir el asset final por defecto.",
+      "parallelInstances": true,
+      "capabilityBundles": [
+        "context-core",
+        "research",
+        "editorial",
+        "social-graphics",
+        "video",
+        "documents",
+        "learning",
+        "director-support"
+      ],
+      "capabilityPolicy": {
+        "requiredBundles": [
+          "context-core",
+          "research",
+          "editorial"
+        ],
+        "usefulBundles": [
+          "social-graphics",
+          "documents"
+        ],
+        "optionalBundles": [
+          "video",
+          "learning",
+          "director-support"
+        ],
+        "forbiddenCapabilities": [
+          "devspace-write",
+          "apify-api",
+          "ads-auditors"
+        ],
+        "escalationPath": [
+          "art-director",
+          "editorial-producer",
+          "video-editor",
+          "human-approval"
+        ]
+      },
+      "profileFile": "agents/content-director.md",
+      "runtimePolicy": {
+        "allowedModes": [
+          "read-only"
+        ],
+        "capabilityCeiling": "declared-bundles"
+      },
+      "executionPolicy": {
+        "contextBudgetTokens": 16000,
+        "outputBudgetTokens": 5000
+      },
+      "modelPolicy": {
+        "preferredClass": "strong",
+        "minimumClass": "balanced",
+        "providerPreference": [
+          "antigravity",
+          "codex"
+        ],
+        "allowEconomyFallback": false
+      }
+    },
+    {
+      "id": "editorial-producer",
+      "displayName": "Editorial & Documents Producer",
+      "division": "content",
+      "level": "builder",
+      "status": "ACTIVE",
+      "purpose": "Produce artículos, guiones, captions, copy y documentos ejecutivos; cuando se activa su especialización puede materializar DOCX, PDF, PPTX y hojas de cálculo sin alterar hechos ni fuentes.",
+      "parallelInstances": true,
+      "capabilityBundles": [
+        "context-core",
+        "research",
+        "editorial",
+        "documents"
+      ],
+      "capabilityPolicy": {
+        "requiredBundles": [
+          "context-core",
+          "research",
+          "editorial"
+        ],
+        "usefulBundles": [
+          "documents"
+        ],
+        "optionalBundles": [],
+        "forbiddenCapabilities": [
+          "devspace-write",
+          "image-tools",
+          "ads-auditors"
+        ],
+        "escalationPath": [
+          "content-director",
+          "research-evidence"
+        ]
+      },
+      "profileFile": "agents/editorial-producer.md",
+      "runtimePolicy": {
+        "allowedModes": [
+          "read-only"
+        ],
+        "capabilityCeiling": "declared-bundles"
+      },
+      "executionPolicy": {
+        "contextBudgetTokens": 12000,
+        "outputBudgetTokens": 5000
+      },
+      "modelPolicy": {
+        "preferredClass": "strong",
+        "minimumClass": "balanced",
+        "providerPreference": [
+          "antigravity",
+          "codex"
+        ],
+        "allowEconomyFallback": false
+      }
+    },
+    {
+      "id": "social-content-producer",
+      "displayName": "Social Content & Carousel Producer",
+      "division": "content",
+      "level": "builder",
+      "status": "ACTIVE",
+      "purpose": "Produce carruseles, posts visuales y adaptaciones sociales listas para revisión a partir de estrategia, copy, referencias e identidad aprobadas; no publica en cuentas externas por defecto.",
+      "parallelInstances": true,
+      "capabilityBundles": [
+        "context-core",
+        "research",
+        "editorial",
+        "social-graphics",
+        "visual-reference",
+        "content-build",
+        "browser-qa"
+      ],
+      "capabilityPolicy": {
+        "requiredBundles": [
+          "context-core",
+          "editorial",
+          "social-graphics",
+          "content-build"
+        ],
+        "usefulBundles": [
+          "visual-reference"
+        ],
+        "optionalBundles": [
+          "research",
+          "browser-qa"
+        ],
+        "forbiddenCapabilities": [
+          "apify-api",
+          "ads-auditors"
+        ],
+        "escalationPath": [
+          "content-director",
+          "art-director",
+          "visual-systems-designer",
+          "human-approval"
+        ]
+      },
+      "profileFile": "agents/social-content-producer.md",
+      "runtimePolicy": {
+        "allowedModes": [
+          "read-only",
+          "workspace-write"
+        ],
+        "capabilityCeiling": "declared-bundles",
+        "requireWriteScopes": true
+      },
+      "executionPolicy": {
+        "contextBudgetTokens": 14000,
+        "outputBudgetTokens": 5500
+      },
+      "modelPolicy": {
+        "preferredClass": "strong",
+        "minimumClass": "balanced",
+        "providerPreference": [
+          "antigravity",
+          "codex"
+        ],
+        "allowEconomyFallback": false
+      }
+    },
+    {
+      "id": "video-editor",
+      "displayName": "Video Editor",
+      "division": "content",
+      "level": "builder",
+      "status": "ACTIVE",
+      "purpose": "Construye video real: assets, captura, motion, audio, captions, transiciones, composición y render reproducible.",
+      "parallelInstances": true,
+      "capabilityBundles": [
+        "context-core",
+        "video",
+        "frontend",
+        "visual-reference",
+        "motion-analysis"
+      ],
+      "capabilityPolicy": {
+        "requiredBundles": [
+          "context-core",
+          "video"
+        ],
+        "usefulBundles": [
+          "frontend"
+        ],
+        "optionalBundles": [
+          "visual-reference",
+          "motion-analysis"
+        ],
+        "forbiddenCapabilities": [
+          "apify-api",
+          "ads-auditors"
+        ],
+        "escalationPath": [
+          "content-director",
+          "art-director",
+          "human-approval"
+        ]
+      },
+      "profileFile": "agents/video-editor.md",
+      "runtimePolicy": {
+        "allowedModes": [
+          "read-only",
+          "workspace-write"
+        ],
+        "capabilityCeiling": "declared-bundles",
+        "requireWriteScopes": true
+      },
+      "executionPolicy": {
+        "contextBudgetTokens": 16000,
+        "outputBudgetTokens": 6000
+      },
+      "modelPolicy": {
+        "preferredClass": "strong",
+        "minimumClass": "balanced",
+        "providerPreference": [
+          "antigravity",
+          "codex"
+        ],
+        "allowEconomyFallback": false
+      }
+    },
+    {
+      "id": "growth-director",
+      "displayName": "Growth Director",
+      "division": "growth",
+      "level": "domain-director",
+      "status": "ACTIVE",
+      "purpose": "Dirige en modo read-only estrategia de adquisición, posicionamiento, experimentación, funnels, SEO, analytics, compliance y coordinación de especialistas sin ejecutar acciones externas.",
+      "parallelInstances": true,
+      "capabilityBundles": [
+        "context-core",
+        "growth",
+        "research",
+        "editorial",
+        "director-support"
+      ],
+      "capabilityPolicy": {
+        "requiredBundles": [
+          "context-core",
+          "growth",
+          "research"
+        ],
+        "usefulBundles": [],
+        "optionalBundles": [
+          "editorial",
+          "director-support"
+        ],
+        "forbiddenCapabilities": [
+          "devspace-write",
+          "apify-api",
+          "image-tools"
+        ],
+        "escalationPath": [
+          "research-evidence",
+          "content-director",
+          "human-approval"
+        ]
+      },
+      "profileFile": "agents/growth-director.md",
+      "runtimePolicy": {
+        "allowedModes": [
+          "read-only"
+        ],
+        "capabilityCeiling": "declared-bundles"
+      },
+      "executionPolicy": {
+        "contextBudgetTokens": 16000,
+        "outputBudgetTokens": 5000
+      },
+      "modelPolicy": {
+        "preferredClass": "strong",
+        "minimumClass": "balanced",
+        "providerPreference": [
+          "antigravity",
+          "codex"
+        ],
+        "allowEconomyFallback": false
+      }
+    },
+    {
+      "id": "data-acquisition-scraping",
+      "displayName": "Data Acquisition & Scraping Specialist",
+      "division": "shared-services",
+      "level": "specialist",
+      "status": "ACTIVE",
+      "purpose": "Diseña adquisición web estructurada read-only con capacidades existentes aprobadas, procedencia, allowlists, límites y parada segura dentro de permisos y términos aplicables.",
+      "parallelInstances": true,
+      "capabilityBundles": [
+        "context-core",
+        "research",
+        "data-acquisition"
+      ],
+      "capabilityPolicy": {
+        "requiredBundles": [
+          "context-core",
+          "data-acquisition"
+        ],
+        "usefulBundles": [
+          "research"
+        ],
+        "optionalBundles": [],
+        "forbiddenCapabilities": [
+          "devspace-write",
+          "image-tools",
+          "ads-auditors"
+        ],
+        "escalationPath": [
+          "research-evidence",
+          "security-reviewer",
+          "human-approval"
+        ]
+      },
+      "profileFile": "agents/data-acquisition-scraping.md",
+      "runtimePolicy": {
+        "allowedModes": [
+          "read-only"
+        ],
+        "capabilityCeiling": "declared-bundles"
+      },
+      "executionPolicy": {
+        "contextBudgetTokens": 12000,
+        "outputBudgetTokens": 4000
+      },
+      "modelPolicy": {
+        "preferredClass": "balanced",
+        "minimumClass": "economy",
+        "providerPreference": [
+          "antigravity",
+          "codex"
+        ],
+        "allowEconomyFallback": true
+      }
+    },
+    {
+      "id": "outbound-strategist",
+      "displayName": "Outbound Strategist",
+      "division": "growth",
+      "level": "specialist",
+      "status": "CANARY",
+      "purpose": "Convierte señales verificables de cuentas y problemas comerciales en hipótesis de contacto B2B, priorización de prospectos y preparación de discovery sin ejecutar outreach externo.",
+      "parallelInstances": true,
+      "capabilityBundles": [
+        "context-core",
+        "commercial-outbound",
+        "research",
+        "growth",
+        "editorial"
+      ],
+      "capabilityPolicy": {
+        "requiredBundles": [
+          "context-core",
+          "commercial-outbound"
+        ],
+        "usefulBundles": [
+          "research",
+          "growth"
+        ],
+        "optionalBundles": [
+          "editorial"
+        ],
+        "forbiddenCapabilities": [
+          "devspace-write",
+          "apify-api",
+          "image-tools"
+        ],
+        "escalationPath": [
+          "growth-director",
+          "sales-engineer",
+          "research-evidence",
+          "human-approval"
+        ]
+      },
+      "profileFile": "agents/outbound-strategist.md",
+      "runtimePolicy": {
+        "allowedModes": [
+          "read-only"
+        ],
+        "capabilityCeiling": "declared-bundles"
+      },
+      "executionPolicy": {
+        "contextBudgetTokens": 12000,
+        "outputBudgetTokens": 4000
+      },
+      "modelPolicy": {
+        "preferredClass": "balanced",
+        "minimumClass": "balanced",
+        "providerPreference": [
+          "antigravity",
+          "codex"
+        ],
+        "allowEconomyFallback": false
+      }
+    },
+    {
+      "id": "sales-engineer",
+      "displayName": "Sales Engineer",
+      "division": "growth",
+      "level": "specialist",
+      "status": "CANARY",
+      "purpose": "Traduce problemas comerciales calificados en soluciones técnicas convincentes y viables, discovery técnico, POCs acotados y soporte de propuesta sin implementar ni comprometer alcance externo.",
+      "parallelInstances": true,
+      "capabilityBundles": [
+        "context-core",
+        "sales-engineering",
+        "architecture",
+        "research",
+        "editorial"
+      ],
+      "capabilityPolicy": {
+        "requiredBundles": [
+          "context-core",
+          "sales-engineering"
+        ],
+        "usefulBundles": [
+          "architecture",
+          "research"
+        ],
+        "optionalBundles": [
+          "editorial"
+        ],
+        "forbiddenCapabilities": [
+          "devspace-write",
+          "apify-api",
+          "image-tools",
+          "ads-auditors"
+        ],
+        "escalationPath": [
+          "software-architect",
+          "software-builder",
+          "outbound-strategist",
+          "content-director",
+          "human-approval"
+        ]
+      },
+      "profileFile": "agents/sales-engineer.md",
+      "runtimePolicy": {
+        "allowedModes": [
+          "read-only"
+        ],
+        "capabilityCeiling": "declared-bundles"
+      },
+      "executionPolicy": {
+        "contextBudgetTokens": 14000,
+        "outputBudgetTokens": 4500
+      },
+      "modelPolicy": {
+        "preferredClass": "balanced",
+        "minimumClass": "balanced",
+        "providerPreference": [
+          "antigravity",
+          "codex"
+        ],
+        "allowEconomyFallback": false
+      }
+    }
+  ]
+}

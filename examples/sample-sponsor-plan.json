@@ -1,0 +1,55 @@
+{
+  "schema": "orbital.sponsor-plan.v1",
+  "routingMode": "director-led",
+  "complexity": "normal",
+  "objective": "Implement and verify adaptive checkout validation.",
+  "acceptance": [
+    "Checkout module validates inputs deterministically.",
+    "Independent QA and Release gates pass with attested artifacts."
+  ],
+  "constraints": [
+    "Keep writeScopes strictly relative to the isolated worktree."
+  ],
+  "nonGoals": [
+    "Do not mutate unrelated payment or auth modules."
+  ],
+  "budget": {
+    "maxSteerRounds": 6,
+    "maxPackageReworkRounds": 3,
+    "maxReplanRounds": 2
+  },
+  "workPackages": [
+    {
+      "id": "PKG-01-implement-checkout",
+      "objective": "Implement checkout validation inside src/checkout.",
+      "dependsOn": [],
+      "expectedResult": "Passing unit tests and implementation.",
+      "validation": "evidence-result",
+      "modeHint": "workspace-write",
+      "writeScopes": ["src/checkout", "tests/checkout"],
+      "preferredRole": "software-builder"
+    },
+    {
+      "id": "PKG-02-independent-qa",
+      "objective": "Run end-to-end verification and attest QA report.",
+      "dependsOn": ["PKG-01-implement-checkout"],
+      "expectedResult": "Attested QA_GO verdict.",
+      "validation": "qa-go",
+      "requireArtifact": true,
+      "modeHint": "read-only",
+      "writeScopes": [],
+      "preferredRole": "qa-e2e"
+    },
+    {
+      "id": "PKG-03-release-gate",
+      "objective": "Audit attested QA evidence and sign release verdict.",
+      "dependsOn": ["PKG-02-independent-qa"],
+      "expectedResult": "Binding releaseVerdict PASS.",
+      "validation": "release-pass",
+      "requireArtifact": true,
+      "modeHint": "read-only",
+      "writeScopes": [],
+      "preferredRole": "release-auditor"
+    }
+  ]
+}

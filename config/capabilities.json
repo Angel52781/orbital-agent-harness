@@ -1,0 +1,428 @@
+{
+  "schemaVersion": 1,
+  "bundles": {
+    "graph-maintenance": ["graphify"],
+    "context-core": ["context-routing", "devspace", "project-instructions", "github-read", "context7"],
+    "architecture": ["graphify", "research-ops", "search-first", "product-capability", "blueprint", "sequential-thinking", "ponytail"],
+    "workflow-design": ["workflow-mapping", "automation-governance"],
+    "director-support": ["find-skills", "grill-me"],
+    "context-acquisition": ["apify-api", "firecrawl", "web-search", "structured-extraction"],
+    "research": ["web-search", "firecrawl", "github-read", "research-ops", "source-verification"],
+    "workspace-read": ["google-workspace-read"],
+    "code-build": ["devspace-write", "terminal", "git", "tests", "typecheck", "lint", "build"],
+    "verification-runtime": ["terminal", "tests", "payment-evidence"],
+    "content-build": ["devspace-write", "terminal"],
+    "code-review": ["code-review", "ponytail-review", "ponytail-audit", "silent-failure-review", "diff-review"],
+    "codebase-archaeology": ["codebase-archaeology"],
+    "diagnostics": ["diagnose"],
+    "frontend": ["frontend-design", "ui-ux-pro-max", "impeccable", "hallmark", "design-md", "reicon"],
+    "motion-analysis": ["motion-reference-analysis"],
+    "visual-reference": ["stitch", "open-design", "reference-discovery", "mobbin", "design-libraries"],
+    "browser-qa": ["fast-decision", "jev-ultrafast", "playwright", "screenshots", "responsive-qa", "accessibility-qa"],
+    "desktop-qa": ["desktop-qa", "fast-decision"],
+    "security": ["security-review", "security-lab", "threat-model", "permission-review"],
+    "reliability": ["logs", "health-checks", "observability", "performance", "recovery"],
+    "reliability-mutation": ["rollback"],
+    "editorial": ["humanizer", "editorial-routing", "claims-review", "copy-review"],
+    "documents": ["documents-plugin", "pdf-plugin", "presentations-plugin", "spreadsheets-plugin", "humanizer"],
+    "video": ["hyperframes", "remotion", "media-use", "video-shotcraft", "hand-drawn-canvas-animation", "chatcut", "ffmpeg", "tts-generation", "video-generation"],
+    "social-graphics": ["orbital-design-production", "diagram-design", "social-ops", "image-tools"],
+    "growth": ["marketing-knowledge", "ads-auditors", "seo", "analytics", "compliance"],
+    "commercial-outbound": ["outbound-strategy", "opportunity-qualification", "sales-discovery"],
+    "sales-engineering": ["technical-discovery", "solution-framing", "poc-scoping", "proposal-strategy"],
+    "data-acquisition": ["apify-api", "firecrawl", "jev-ultrafast", "browser", "web-search", "structured-extraction"],
+    "learning": ["study-planning", "quiz-generation", "explanation", "spaced-repetition", "source-grounding"]
+  },
+  "bundlePolicies": {
+    "graph-maintenance": {
+      "materialization": "external-maintainer",
+      "providerClasses": ["codex", "antigravity"],
+      "protectedActions": ["workspace-mutation"],
+      "notes": "Routine automatic graph maintenance uses the separate Antigravity worker with bounded time/effort, real provider quotas and provenance verification. No per-run human approval is needed. Never grants the Director write authority, control-plane mutation or additional protected actions."
+    },
+    "context-core": {
+      "materialization": "mixed",
+      "providerClasses": ["codex", "antigravity"],
+      "protectedActions": [],
+      "notes": "Workspace/context access is runtime-native; Context7 is separately probed when requested."
+    },
+    "architecture": {
+      "materialization": "mixed",
+      "providerClasses": ["codex", "antigravity"],
+      "protectedActions": [],
+      "notes": "Most architecture capabilities are skills or local reasoning aids, not autonomous permissions."
+    },
+    "workflow-design": {
+      "materialization": "mixed",
+      "providerClasses": ["codex", "antigravity"],
+      "protectedActions": [],
+      "notes": "Profile-native workflow mapping and automation governance. These capabilities structure states, transitions, recovery, handoffs, observability and automation risk; they do not grant execution authority."
+    },
+    "director-support": {
+      "materialization": "mixed",
+      "providerClasses": ["codex", "antigravity"],
+      "protectedActions": [],
+      "notes": "Directors may discover candidate skills or run structured clarification; discovery never authorizes installation or persistent activation."
+    },
+    "context-acquisition": {
+      "materialization": "mixed",
+      "providerClasses": ["codex", "antigravity"],
+      "protectedActions": ["credentialed-extraction"],
+      "notes": "Context Curator may use bounded external structured acquisition when explicitly granted; Apify remains project-credential protected."
+    },
+    "research": {
+      "materialization": "mixed",
+      "providerClasses": ["codex", "antigravity"],
+      "protectedActions": [],
+      "notes": "External retrieval remains read-only; source authority is independent from retrieval tooling."
+    },
+    "workspace-read": {
+      "materialization": "surface-specific",
+      "providerClasses": ["codex", "antigravity"],
+      "protectedActions": ["credentialed-extraction"],
+      "notes": "Owner/private Google Workspace retrieval only. The Orbital wrapper permits schema inspection, dry-runs and HTTP GET methods; auth/export and write methods are blocked."
+    },
+    "code-build": {
+      "materialization": "sandbox-enforced",
+      "providerClasses": ["codex", "antigravity"],
+      "protectedActions": ["workspace-mutation"],
+      "notes": "devspace-write requires workspace-write mode and explicit scopes when the role requires them."
+    },
+    "verification-runtime": {
+      "materialization": "sandbox-enforced",
+      "providerClasses": ["codex", "antigravity"],
+      "protectedActions": [],
+      "notes": "Read-only reviewers may execute deterministic commands/tests inside the read-only sandbox without receiving devspace-write or workspace-mutation authority."
+    },
+    "content-build": {
+      "materialization": "sandbox-enforced",
+      "providerClasses": ["codex", "antigravity"],
+      "protectedActions": ["workspace-mutation"],
+      "notes": "Local content assets may be written only inside explicit writeScopes; this does not grant software architecture or production mutation authority."
+    },
+    "code-review": {
+      "materialization": "mixed",
+      "providerClasses": ["codex", "antigravity"],
+      "protectedActions": [],
+      "notes": "Review capabilities do not imply permission to repair or integrate."
+    },
+    "codebase-archaeology": {
+      "materialization": "mixed",
+      "providerClasses": ["codex", "antigravity"],
+      "protectedActions": [],
+      "notes": "Historical drift review for duplicated implementations, orphaned configuration, competing conventions and stale documentation. Read-only by design."
+    },
+    "diagnostics": {
+      "materialization": "runtime-preflight",
+      "providerClasses": ["antigravity"],
+      "protectedActions": [],
+      "notes": "Workflow-level diagnostic skill is currently Antigravity-local and is requested only when a systematic workflow health scan is materially useful."
+    },
+    "frontend": {
+      "materialization": "mixed",
+      "providerClasses": ["codex", "antigravity"],
+      "protectedActions": [],
+      "notes": "Design skills and MCPs are situational; frontend mutation still flows through code-build."
+    },
+    "motion-analysis": {
+      "materialization": "sandbox-enforced",
+      "providerClasses": ["codex", "antigravity"],
+      "protectedActions": ["workspace-mutation"],
+      "notes": "Pinned Motiscope analysis can measure motion references and writes .motiscope artifacts only inside explicit workspace write scopes. Asset generation and skill installation are blocked by the Orbital wrapper."
+    },
+    "visual-reference": {
+      "materialization": "mixed",
+      "providerClasses": ["codex", "antigravity"],
+      "protectedActions": [],
+      "notes": "Reference discovery is read-only and does not authorize copying protected assets."
+    },
+    "browser-qa": {
+      "materialization": "runtime-preflight",
+      "providerClasses": ["codex", "antigravity"],
+      "protectedActions": [],
+      "notes": "JEV is the preferred fast path for simple DOM/ARIA interaction when its own preflight is eligible; unsupported or failed runs fall through to Playwright, which remains the broad browser QA route."
+    },
+    "desktop-qa": {
+      "materialization": "surface-specific",
+      "providerClasses": ["codex", "antigravity"],
+      "protectedActions": [],
+      "notes": "Native Windows QA is available only on a host where the narrow orbital-desktop-qa launcher materializes. The raw Windows Harness CLI is not a capability grant. Non-Windows/VPS hosts fail closed."
+    },
+    "security": {
+      "materialization": "mixed",
+      "providerClasses": ["codex", "antigravity"],
+      "protectedActions": ["offensive-execution"],
+      "notes": "Security review is read-only by default; offensive execution requires separate rules of engagement."
+    },
+    "reliability": {
+      "materialization": "mixed",
+      "providerClasses": ["codex", "antigravity"],
+      "protectedActions": [],
+      "notes": "Read-only observability and recovery analysis. Actual rollback is intentionally split into reliability-mutation and remains production-gated."
+    },
+    "reliability-mutation": {
+      "materialization": "surface-specific",
+      "providerClasses": ["codex", "antigravity"],
+      "protectedActions": ["production-mutation"],
+      "notes": "Explicit production rollback capability. Never granted transitively to read-only reliability or release-review roles."
+    },
+    "editorial": {
+      "materialization": "mixed",
+      "providerClasses": ["codex", "antigravity"],
+      "protectedActions": ["external-publication"],
+      "notes": "Editorial generation is local/proposal-only; publication remains separately authorized."
+    },
+    "documents": {
+      "materialization": "surface-specific",
+      "providerClasses": ["codex"],
+      "protectedActions": [],
+      "notes": "PROFILE_ONLY specialization; does not widen the base runtime capability ceiling."
+    },
+    "video": {
+      "materialization": "runtime-preflight",
+      "providerClasses": ["codex", "antigravity"],
+      "protectedActions": ["paid-generation"],
+      "notes": "Local edit/render is distinct from paid or externally billed generation."
+    },
+    "social-graphics": {
+      "materialization": "mixed",
+      "providerClasses": ["codex", "antigravity"],
+      "protectedActions": ["paid-generation", "external-publication"],
+      "notes": "Asset generation may require explicit spend approval; publishing is never implicit."
+    },
+    "growth": {
+      "materialization": "mixed",
+      "providerClasses": ["codex", "antigravity"],
+      "protectedActions": ["external-account-mutation", "paid-campaign"],
+      "notes": "Growth runtime remains proposal/read-only unless an external action is separately approved."
+    },
+    "commercial-outbound": {
+      "materialization": "mixed",
+      "providerClasses": ["codex", "antigravity"],
+      "protectedActions": [],
+      "notes": "Signal-based account selection, opportunity qualification and discovery preparation only. It does not authorize sending outreach, mutating CRM/account state or contacting prospects."
+    },
+    "sales-engineering": {
+      "materialization": "mixed",
+      "providerClasses": ["codex", "antigravity"],
+      "protectedActions": [],
+      "notes": "Pre-sales technical discovery, solution framing, POC scoping and proposal support. It does not authorize implementation, production mutation or external commitments."
+    },
+    "data-acquisition": {
+      "materialization": "runtime-preflight",
+      "providerClasses": ["codex", "antigravity"],
+      "protectedActions": ["credentialed-extraction"],
+      "notes": "Credentialed providers such as Apify require project authorization; bypasses are out of scope."
+    },
+    "learning": {
+      "materialization": "profile-only",
+      "providerClasses": ["codex", "antigravity"],
+      "protectedActions": [],
+      "notes": "PROFILE_ONLY specialization; never creates an independent runtime grant."
+    }
+  },
+  "capabilityPolicies": {
+    "context-routing": {
+      "omniToolless": true
+    },
+    "project-instructions": {
+      "omniToolless": true
+    },
+    "code-review": {
+      "omniToolless": true
+    },
+    "diff-review": {
+      "omniToolless": true
+    },
+    "permission-review": {
+      "omniToolless": true
+    },
+    "devspace-write": {
+      "enforcement": "workspace-write",
+      "requiredMode": "workspace-write",
+      "protectedActions": ["workspace-mutation"]
+    },
+    "context7": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "mcp", "name": "context7"}
+    },
+    "sequential-thinking": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "mcp", "name": "sequential-thinking"}
+    },
+    "playwright": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "mcp", "name": "playwright"}
+    },
+    "browser": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "mcp", "name": "playwright"}
+    },
+    "desktop-qa": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "binary", "name": "orbital-desktop-qa"}
+    },
+    "reicon": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "mcp", "name": "reicon"}
+    },
+    "ffmpeg": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "binary", "name": "ffmpeg"}
+    },
+    "google-workspace-read": {
+      "enforcement": "authorization-required",
+      "authorization": "project-credential",
+      "protectedActions": ["credentialed-extraction"],
+      "notes": "Use only through orbital-gws-readonly. The raw gws binary is intentionally not exposed on PATH; owner authentication is separate and human-controlled."
+    },
+    "motion-reference-analysis": {
+      "enforcement": "workspace-write",
+      "requiredMode": "workspace-write",
+      "protectedActions": ["workspace-mutation"],
+      "notes": "Use only through orbital-motiscope. Analysis is local; asset generation, provider calls and persistent skill installation are not granted."
+    },
+    "tts-generation": {
+      "enforcement": "workspace-write",
+      "requiredMode": "workspace-write",
+      "protectedActions": ["workspace-mutation"],
+      "notes": "Uses the local shared Gemini TTS broker (/dev/shm/orbital-tts-shared/tts.sock) with owner-managed API key pool; no paid-generation approval gate required."
+    },
+    "video-generation": {
+      "enforcement": "approval-required",
+      "authorization": "paid-generation",
+      "protectedActions": ["paid-generation"],
+      "notes": "Paid video generation requires an explicit capability grant; local editing and rendering do not imply this grant."
+    },
+    "git": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "binary", "name": "git"}
+    },
+    "design-md": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "binary", "name": "design-md"}
+    },
+    "hyperframes": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "skill", "name": "hyperframes"}
+    },
+    "hand-drawn-canvas-animation": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "skill", "name": "hand-drawn-canvas-animation"}
+    },
+    "firecrawl": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "binary", "name": "firecrawl"}
+    },
+    "apify-api": {
+      "enforcement": "authorization-required",
+      "authorization": "project-credential",
+      "protectedActions": ["credentialed-extraction"]
+    },
+    "image-tools": {
+      "enforcement": "approval-required",
+      "authorization": "paid-generation-when-billed",
+      "protectedActions": ["paid-generation"]
+    },
+    "social-ops": {
+      "enforcement": "approval-required",
+      "authorization": "external-publication",
+      "protectedActions": ["external-publication"]
+    },
+    "rollback": {
+      "enforcement": "approval-required",
+      "authorization": "production-mutation",
+      "protectedActions": ["production-mutation"]
+    },
+    "ads-auditors": {
+      "enforcement": "read-only-policy",
+      "authorization": "separate-approval-for-account-mutation"
+    },
+    "research-ops": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "skill", "name": "research-ops"}
+    },
+    "search-first": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "skill", "name": "search-first"}
+    },
+    "product-capability": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "skill", "name": "product-capability"}
+    },
+    "blueprint": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "skill", "name": "blueprint"}
+    },
+    "ponytail": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "skill", "name": "ponytail"}
+    },
+    "ponytail-review": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "skill", "name": "ponytail-review"}
+    },
+    "ponytail-audit": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "skill", "name": "ponytail-audit"}
+    },
+    "diagnose": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "skill", "name": "diagnose"}
+    },
+    "find-skills": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "skill", "name": "find-skills"}
+    },
+    "grill-me": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "skill", "name": "grill-me"}
+    },
+    "jev-ultrafast": {
+      "enforcement": "runtime-preflight",
+      "notes": "Self-preflight through tools/jev-ultrafast-canary/status.sh; the canary may use TypeSafe or the local Laya Fast Decision backend. Shadow/unverified Laya is not execution-eligible and must fall through to Playwright/System-2."
+    },
+    "fast-decision": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "binary", "name": "orbital-fast-decision"},
+      "notes": "Local System-1 decision service. Domain calibration, thresholds and safe choices are server-side and callers cannot self-promote a domain to selective execution."
+    },
+    "frontend-design": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "skill", "name": "frontend-design"}
+    },
+    "ui-ux-pro-max": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "skill", "name": "ui-ux-pro-max"}
+    },
+    "impeccable": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "skill", "name": "impeccable"}
+    },
+    "hallmark": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "skill", "name": "hallmark"}
+    },
+    "humanizer": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "skill", "name": "humanizer"}
+    },
+    "media-use": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "skill", "name": "media-use"}
+    },
+    "graphify": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "skill", "name": "graphify"}
+    },
+    "security-review": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "skill", "name": "security-review"}
+    },
+    "payment-evidence": {
+      "enforcement": "runtime-preflight",
+      "probe": {"kind": "binary", "name": "orbital-payment-evidence"},
+      "notes": "Fail-closed payment evidence capability. Registered only when the deployed service, state store and secret receiver are verified healthy via read-only aggregate."
+    }
+  }
+}

@@ -53,19 +53,25 @@ Built to govern automated publishing pipelines across **LinkedIn (Company & Pers
 
 ---
 
-## Quick Start & CLI Validation
+## Quick Start (1-Command Run)
 
-Requires **Node.js 20+** (zero `npm install` needed—uses only Node.js built-in modules).
+Requires **Node.js 20+** (zero external dependencies). Run directly from GitHub with no manual install:
 
 ```bash
-git clone https://github.com/Angel52781/orbital-agent-harness.git
-cd orbital-agent-harness
+# 1. Run the bundled deterministic contract demo in one command
+npx github:Angel52781/orbital-agent-harness demo
 
-# Run the full 149-test deterministic verification suite
-npm test
+# 2. Scaffold and validate a new orbital.sponsor-plan.v1 contract in your repo
+npx github:Angel52781/orbital-agent-harness init sponsor-plan.json
 
-# Validate a Sponsor Plan contract before submitting to the controller
-node src/cli-validate.mjs validate-plan examples/sample-sponsor-plan.json
+# 3. Validate any existing plan file
+npx github:Angel52781/orbital-agent-harness validate-plan sponsor-plan.json
+```
+
+Or clone locally to run the full 149-test verification suite:
+
+```bash
+git clone https://github.com/Angel52781/orbital-agent-harness.git && cd orbital-agent-harness && npm test
 ```
 
 ### Example `orbital.sponsor-plan.v1` Contract
